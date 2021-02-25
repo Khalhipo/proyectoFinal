@@ -13,6 +13,7 @@ export class SocialComponent implements OnInit {
 
   mensaje: string = '';
   mensajeEnviado: Mensaje = new Mensaje();
+  temporizador: any = null;
 
   constructor(private userService: UserService, private servicioMensaje: MensajesService) { }
 
@@ -23,7 +24,6 @@ export class SocialComponent implements OnInit {
   infoUser: boolean = false;
 
   ngOnInit(): void {
-    this.listarUsuario();
   }
 
   info(): void {
@@ -31,7 +31,7 @@ export class SocialComponent implements OnInit {
   }
 
   listarUsuario(): void {
-    this.userService.listarUsuario().subscribe(
+    this.userService.listarUsuario(this.busqueda).subscribe(
       respuesta => {
         console.log(respuesta);
         this.users = respuesta;
@@ -41,6 +41,13 @@ export class SocialComponent implements OnInit {
       }
     );
   }
+
+  buscarConRetraso(): void {
+    if(this.temporizador==null){
+      this.temporizador = setTimeout(()=>{this.listarUsuario();this.temporizador=null},1000)
+    }
+  }
+
 
   escribirMensaje(): void {
     this.mensajeEnviado.idDestinatario = this.userSelected.id;
@@ -52,6 +59,17 @@ export class SocialComponent implements OnInit {
       error => {console.log(error),
       this.mensaje = error.error.error
       }
+    )
+  }
+
+  addFriend(user): void {
+    console.log("user: " + user.id);
+    this.userService.addFriend(user).subscribe(
+      respuesta => {
+        console.log(respuesta);
+      },
+      error => {console.log(error),
+      this.mensaje = error.error.error}
     )
   }
 

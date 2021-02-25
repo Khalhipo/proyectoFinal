@@ -32,13 +32,17 @@ export class UserService {
     return this.http.delete(url);
   }
 
-  listarUsuario(): Observable<any> {
-    return this.http.get(url+'list');
+  listarUsuario(entrada: string): Observable<any> {
+    return this.http.get(url+'list'+ '?busqueda=' + entrada);
   }
   
   subirImagen(entrada): Observable<any>{
     return this.http.post(url+'image/', entrada) 
-   }
+  }
+
+  addFriend(user: User): Observable<any> {
+    return this.http.post(url+'friend/', user);
+  }
 
   guardarToken(token: string): void {
     localStorage.setItem('userToken', token);
