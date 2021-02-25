@@ -35,6 +35,10 @@ export class UserService {
   listarUsuario(entrada: string): Observable<any> {
     return this.http.get(url+'list'+ '?busqueda=' + entrada);
   }
+
+  listarAmigos(): Observable<any> {
+    return this.http.get(url+'amigos');
+  }
   
   subirImagen(entrada): Observable<any>{
     return this.http.post(url+'image/', entrada) 

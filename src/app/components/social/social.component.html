@@ -8,9 +8,24 @@
     </div>
     <ul class="list-group list-group-flush">
         <input class="form-control" type="text" [(ngModel)]="busqueda" placeholder="Busca por email" (input)="buscarConRetraso()">
-        <li (click)='userSelected = user' *ngFor="let user of users" class="list-group-item">
+        <li *ngFor="let user of users" class="list-group-item">
             <strong>Email: </strong>{{user.email}}
             <button class="btn btn-info" (click)="addFriend(user)">Añadir a amigos</button>
+        </li>
+    </ul>
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="mensaje">
+    <strong>{{mensaje}}</strong>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Lista de amigos</h4>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li (click)='userSelected = user' *ngFor="let user of friendsUser" class="list-group-item">
+            <strong>Email: </strong>{{user.email}}
+            <strong>Nombre: </strong>{{user.email}}
+            <img src="{{user.imgSrc}}" width='100px'>
         </li>
     </ul>
 </div>
@@ -41,10 +56,6 @@
     <div class="card-body">
             <input class="form-control" type="text" [(ngModel)]="mensajeEnviado.mensaje" placeholder="Mensaje">
             <button class="btn btn-block" (click)="escribirMensaje()">Enviar</button>
-    </div>
-    
-    <div class="alert alert-danger" role="alert" *ngIf="mensaje">
-        <strong>{{mensaje}}</strong>
     </div>
 </div>
 </div>

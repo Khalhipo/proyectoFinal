@@ -95,4 +95,6 @@ subirFoto(): void{
     error => {console.log(error)}
   )
 }
+
+
 }

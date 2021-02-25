@@ -24,6 +24,7 @@ export class SocialComponent implements OnInit {
   infoUser: boolean = false;
 
   ngOnInit(): void {
+    this.listarAmigos();
   }
 
   info(): void {
@@ -67,10 +68,27 @@ export class SocialComponent implements OnInit {
     this.userService.addFriend(user).subscribe(
       respuesta => {
         console.log(respuesta);
+        this.listarAmigos();
+        this.users = [];
+        this.busqueda = '';
       },
       error => {console.log(error),
       this.mensaje = error.error.error}
     )
   }
+
+  
+  listarAmigos(): void {
+    this.userService.listarAmigos().subscribe(
+      respuesta => {
+        console.log(respuesta);
+        this.friendsUser = respuesta;
+      },
+      error => {
+        console.log(error),
+        this.mensaje = error.error.error
+      }
+    )
+  } 
 
 }
