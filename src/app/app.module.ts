@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EnviarTokenInterceptor } from './auth/enviar-token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SocialComponent } from './components/social/social.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavigationComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    SocialComponent
   ],
   imports: [
     BrowserModule,

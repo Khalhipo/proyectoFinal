@@ -1,0 +1,51 @@
+<!--Que salga el nombre, y al pinchar en el nombre salga toda la información-->
+<div class="row">
+    <div class="col-md-6">
+<div class="mx-auto m-4" style="width: 60vh;">
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Añade a tus amigos</h4>
+    </div>
+    <ul class="list-group list-group-flush">
+        <input class="form-control" type="text" [(ngModel)]="busqueda" placeholder="Busca por email" (input)="listarUsuario()">
+        <li (click)='userSelected = user' *ngFor="let user of friendsUser" class="list-group-item">
+            <strong>Email: </strong>{{user.email}}
+            <button (click)="addFriend(user)">Añadir a amigos</button>
+        </li>
+    </ul>
+</div>
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="card mx-auto m-4" style="width: 60vh;" *ngIf="userSelected">
+    <div class="card-header"><h4>Datos Usuario</h4></div>
+    <div class="card-body">
+        <h5 class="card-title">Email</h5>
+        <p class="card-text">{{userSelected.email}}</p>
+        <hr>
+        <h5 class="card-title">Nombre</h5>
+        <p class="card-text">{{userSelected.nombre}}</p>
+        <hr>
+        <h5 class="card-title">Sexo</h5>
+        <p class="card-text">{{userSelected.sexo}}</p>
+        <hr>
+        <h5 class="card-title">Peso</h5>
+        <p class="card-text">{{userSelected.peso}}</p>
+        <hr>
+        <h5 class="card-title">Altura</h5>
+        <p class="card-text">{{userSelected.altura}}</p>
+        <hr>
+        <img src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}" width="40px">
+    </div>
+    <div class="card-body">
+            <input class="form-control" type="text" [(ngModel)]="mensajeEnviado.mensaje" placeholder="Mensaje">
+            <button class="btn btn-block" (click)="escribirMensaje()">Enviar</button>
+    </div>
+    
+    <div class="alert alert-danger" role="alert" *ngIf="mensaje">
+        <strong>{{mensaje}}</strong>
+    </div>
+</div>
+</div>
+</div>

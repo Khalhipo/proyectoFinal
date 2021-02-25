@@ -60,6 +60,11 @@
         <button class="btn btn-danger btn-block" (click)="eliminarUsuario()" [disabled]="inputBorrar!=perfil.email">Eliminar</button>
     </div>
 </div>
-<input type="file" (change)='tengoFoto($event)'>
-<button type='button' (click)='subirFoto()'>Subir imagen por parámetros</button>
+<div class="card">
+    <div class="card-header h5 text-center">Imagen</div>
+    <div class="card-body">
+        <input class="form-control" type="file" (change)='tengoFoto($event)'>
+<button class="btn btn-primary btn-block" type='button' (click)='subirFoto()'>Subir imagen</button>
+    </div>
+</div>
 </div>

@@ -5,11 +5,13 @@ import { ProfileComponent } from './components/auth/profile/profile.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 
 import { UserRouterGuard } from './auth/user-router.guard';
+import { SocialComponent } from './components/social/social.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
+  {path:"social",component:SocialComponent},
   {path:"profile",component:ProfileComponent, canActivate:[UserRouterGuard]},
   {path:"**",component:LoginComponent}
 ];
