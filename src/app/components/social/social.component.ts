@@ -89,6 +89,20 @@ export class SocialComponent implements OnInit {
         this.mensaje = error.error.error
       }
     )
-  } 
+  }
+  
+  borrarAmigo(id: number): void {
+    this.userService.eliminarAmigo(id).subscribe(
+      respuesta => {
+        console.log(respuesta);
+        this.listarAmigos();
+        this.userSelected = null;
+      },
+      error => {
+        console.log(error),
+        this.mensaje = error.error.error
+      }
+    )
+  }
 
 }

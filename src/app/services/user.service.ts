@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ObservedValueOf } from 'rxjs';
 import { accesoUsuario, User } from '../interfaces/user';
 
 
@@ -46,6 +46,10 @@ export class UserService {
 
   addFriend(user: User): Observable<any> {
     return this.http.post(url+'friend/', user);
+  }
+
+  eliminarAmigo(id: number): Observable<any> {
+    return this.http.delete(url+'friend'+'?id='+id);
   }
 
   guardarToken(token: string): void {

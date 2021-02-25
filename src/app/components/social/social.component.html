@@ -22,10 +22,12 @@
         <h4 class="card-title">Lista de amigos</h4>
     </div>
     <ul class="list-group list-group-flush">
-        <li (click)='userSelected = user' *ngFor="let user of friendsUser" class="list-group-item">
+        <li *ngFor="let user of friendsUser" class="list-group-item">
             <strong>Email: </strong>{{user.email}}
-            <strong>Nombre: </strong>{{user.email}}
+            <strong>Nombre: </strong>{{user.nombre}}
             <img src="{{user.imgSrc}}" width='100px'>
+            <button class="btn btn-danger" (click)="borrarAmigo(user.id)">Borrar</button>
+            <button class="btn btn-info" (click)='userSelected = user'>Chat</button>
         </li>
     </ul>
 </div>
@@ -34,28 +36,14 @@
 
 <div class="col-md-6">
 <div class="card mx-auto m-4" style="width: 60vh;" *ngIf="userSelected">
-    <div class="card-header"><h4>Datos Usuario</h4></div>
+    <div class="card-header"><h4><img src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}" width="20px"> Chat</h4></div>
     <div class="card-body">
-        <h5 class="card-title">Email</h5>
-        <p class="card-text">{{userSelected.email}}</p>
-        <hr>
-        <h5 class="card-title">Nombre</h5>
-        <p class="card-text">{{userSelected.nombre}}</p>
-        <hr>
-        <h5 class="card-title">Sexo</h5>
-        <p class="card-text">{{userSelected.sexo}}</p>
-        <hr>
-        <h5 class="card-title">Peso</h5>
-        <p class="card-text">{{userSelected.peso}}</p>
-        <hr>
-        <h5 class="card-title">Altura</h5>
-        <p class="card-text">{{userSelected.altura}}</p>
-        <hr>
-        <img src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}" width="40px">
+        <!--Cargar el chat dentro-->
+        
     </div>
     <div class="card-body">
             <input class="form-control" type="text" [(ngModel)]="mensajeEnviado.mensaje" placeholder="Mensaje">
-            <button class="btn btn-block" (click)="escribirMensaje()">Enviar</button>
+            <button class="btn btn-primary btn-block" (click)="escribirMensaje()">Enviar</button>
     </div>
 </div>
 </div>
