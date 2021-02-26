@@ -22,6 +22,7 @@ export class SocialComponent implements OnInit {
   friendsUser: User[] = [];
   busqueda: string = '';
   infoUser: boolean = false;
+  mensajesChat: Mensaje[] = [];
 
   ngOnInit(): void {
     this.listarAmigos();
@@ -43,6 +44,19 @@ export class SocialComponent implements OnInit {
     );
   }
 
+  listarMensajes(id: number): void {
+    this.servicioMensaje.listarMensajes(id).subscribe(
+      respuesta => {
+        console.log(respuesta);
+        this.mensajesChat = respuesta;
+      },
+      error => {
+        console.log(error),
+        this.mensaje = error.error.error
+      }
+    )
+  }
+
   buscarConRetraso(): void {
     if(this.temporizador==null){
       this.temporizador = setTimeout(()=>{this.listarUsuario();this.temporizador=null},1000)
@@ -56,6 +70,7 @@ export class SocialComponent implements OnInit {
       respuesta => {
         console.log(respuesta)
         this.mensajeEnviado = new Mensaje();
+        this.listarMensajes(this.userSelected.id);
       },
       error => {console.log(error),
       this.mensaje = error.error.error
@@ -97,6 +112,19 @@ export class SocialComponent implements OnInit {
         console.log(respuesta);
         this.listarAmigos();
         this.userSelected = null;
+      },
+      error => {
+        console.log(error),
+        this.mensaje = error.error.error
+      }
+    )
+  }
+
+  borrarChat(id: number): void {
+    this.servicioMensaje.borrarChat(id).subscribe(
+      respuesta => {
+        console.log(respuesta);
+        this.listarMensajes(id);
       },
       error => {
         console.log(error),

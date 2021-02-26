@@ -25,11 +25,11 @@ import { SocialComponent } from './components/social/social.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule
+    HttpClientModule
   ],
   providers: [
     {provide:LOCALE_ID, useValue:"es"}, 

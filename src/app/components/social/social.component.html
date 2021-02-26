@@ -27,7 +27,7 @@
             <strong>Nombre: </strong>{{user.nombre}}
             <img src="{{user.imgSrc}}" width='100px'>
             <button class="btn btn-danger" (click)="borrarAmigo(user.id)">Borrar</button>
-            <button class="btn btn-info" (click)='userSelected = user'>Chat</button>
+            <button class="btn btn-info" (click)='userSelected = user;listarMensajes(user.id)'>Chat</button>
         </li>
     </ul>
 </div>
@@ -36,14 +36,21 @@
 
 <div class="col-md-6">
 <div class="card mx-auto m-4" style="width: 60vh;" *ngIf="userSelected">
-    <div class="card-header"><h4><img src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}" width="20px"> Chat</h4></div>
-    <div class="card-body">
-        <!--Cargar el chat dentro-->
-        
+    <div class="card-header"><h4><img src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}" width="20px"> Chat</h4><button (click)="userSelected = null" class="btn btn-danger">X</button></div>
+    <div class=" chat card-body">
+        <ul *ngIf="mensajesChat.length>0; else chatVacio">
+            <li *ngFor="let message of mensajesChat" class="list-group-item">
+                {{message.mensaje}}
+            </li>
+        </ul>
+        <ng-template #chatVacio>
+            <p class="list-group-item">No ha iniciado ninguna conversación</p>
+        </ng-template>
     </div>
     <div class="card-body">
             <input class="form-control" type="text" [(ngModel)]="mensajeEnviado.mensaje" placeholder="Mensaje">
-            <button class="btn btn-primary btn-block" (click)="escribirMensaje()">Enviar</button>
+            <button [disabled]="!mensajeEnviado.mensaje" class="btn btn-primary btn-block" (click)="escribirMensaje()">Enviar</button>
+            <button [disabled]="mensajesChat.length==0" class="btn btn-danger btn-block" (click)="borrarChat(userSelected.id)">Borrar conversación</button>
     </div>
 </div>
 </div>
