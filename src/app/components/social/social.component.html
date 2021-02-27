@@ -9,25 +9,45 @@
     <ul class="list-group list-group-flush">
         <input class="form-control" type="text" [(ngModel)]="busqueda" placeholder="Busca por email" (input)="buscarConRetraso()">
         <li *ngFor="let user of users" class="list-group-item">
-            <strong>Email: </strong>{{user.email}}
-            <button class="btn btn-info" (click)="addFriend(user)">Añadir a amigos</button>
+            <div class="container-friend">
+                <div><img class="img-user" src="{{user.imgSrc ? user.imgSrc : 'assets/images/foto_perfil.jpg'}}"></div>
+                    <div>
+                    <div><strong><i class="fas fa-id-badge"></i></strong> {{user.nombre}}</div>
+                    <div><span class="data-email"><i class="fas fa-envelope-square"></i> {{user.email}}</span></div>
+                    </div>
+                <div class="btns-friend">
+                    <button class="btn btn-primary" (click)="addFriend(user)"><i class="fas fa-user-plus"></i></button>
+                </div>
+                </div>
+            
         </li>
     </ul>
 </div>
 <div class="alert alert-danger" role="alert" *ngIf="mensaje">
     <strong>{{mensaje}}</strong>
 </div>
-<div class="card">
+<div class="lista-amigos card mt-4">
     <div class="card-header">
         <h4 class="card-title">Lista de amigos</h4>
     </div>
     <ul class="list-group list-group-flush">
         <li *ngFor="let user of friendsUser" class="list-group-item">
-            <strong>Email: </strong>{{user.email}}
-            <strong>Nombre: </strong>{{user.nombre}}
-            <img src="{{user.imgSrc}}" width='100px'>
-            <button class="btn btn-danger" (click)="borrarAmigo(user.id)">Borrar</button>
-            <button class="btn btn-info" (click)='userSelected = user;listarMensajes(user.id)'>Chat</button>
+        <div class="container-friend">
+        <div><img class="img-user" src="{{user.imgSrc ? user.imgSrc : 'assets/images/foto_perfil.jpg'}}"></div>
+            <div>
+            <div><strong><i class="fas fa-id-badge"></i></strong> {{user.nombre}}</div>
+            <div><span class="data-email"><i class="fas fa-envelope-square"></i> {{user.email}}</span></div>
+            </div>
+        <div class="btns-friend">
+            <button class="btn btn-danger" (click)="borrarAmigo(user.id)"><i class="fas fa-user-minus"></i></button> 
+            <button class="btn-chat btn btn-info" (click)='userSelected = user;listarMensajes(user.id)'><i class="fas fa-comments"></i></button>
+        </div>
+        </div>
+        </li>
+        <li *ngIf="friendsUser.length==0">
+            <div class="alert alert-primary" role="alert">
+                Aún no has añadido ningún amigo
+              </div>
         </li>
     </ul>
 </div>
@@ -36,11 +56,22 @@
 
 <div class="col-md-6">
 <div class="card mx-auto m-4" style="width: 60vh;" *ngIf="userSelected">
-    <div class="card-header"><h4><img src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}" width="20px"> Chat</h4><button (click)="userSelected = null" class="btn btn-danger">X</button></div>
-    <div class=" chat card-body">
+    <div class="card-header">
+        <div class="header-chat">
+            <div>
+              <img  class="img-user-chat" src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}">
+              <strong>{{userSelected.nombre}}</strong>
+            </div>
+          <button (click)="userSelected = null" class="btn"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div class="chat card-body">
         <ul *ngIf="mensajesChat.length>0; else chatVacio">
             <li *ngFor="let message of mensajesChat" class="list-group-item">
-                {{message.mensaje}}
+               <span class="message-friend"  *ngIf="message.idRemitente == userSelected.id;else usuarioLogueado"><strong>{{userSelected.nombre}}:</strong> {{message.mensaje}}</span>
+               <ng-template #usuarioLogueado>
+                <span class="message-me"><strong >Yo:</strong> {{message.mensaje}}</span>
+               </ng-template>
             </li>
         </ul>
         <ng-template #chatVacio>

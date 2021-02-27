@@ -107,8 +107,10 @@ export class SocialComponent implements OnInit {
   }
   
   borrarAmigo(id: number): void {
+    if(confirm("¿Estás seguro de borrar este amigo?")){
     this.userService.eliminarAmigo(id).subscribe(
       respuesta => {
+        this.borrarChat(id);
         console.log(respuesta);
         this.listarAmigos();
         this.userSelected = null;
@@ -118,9 +120,11 @@ export class SocialComponent implements OnInit {
         this.mensaje = error.error.error
       }
     )
+    }
   }
 
   borrarChat(id: number): void {
+    if(confirm("¿Estás seguro de borrar el chat?")){
     this.servicioMensaje.borrarChat(id).subscribe(
       respuesta => {
         console.log(respuesta);
@@ -131,6 +135,7 @@ export class SocialComponent implements OnInit {
         this.mensaje = error.error.error
       }
     )
+  }
   }
 
 }

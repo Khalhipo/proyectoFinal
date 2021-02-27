@@ -2,3 +2,52 @@
     max-height: 250px;
     overflow-y: scroll;
 }
+
+.lista-amigos {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.img-user {
+    border-radius: 40px;
+    width: 80px;
+    height: 80px;
+}
+
+.img-user-chat {
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.btns-friend {
+    text-align: right;
+}
+
+.data-email {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.container-friend {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-chat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-friend {
+    padding-right: 4em;
+}
+
+.message-me {
+    padding-left: 4em;
+}
+
