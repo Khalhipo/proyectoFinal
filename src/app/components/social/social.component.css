@@ -1,12 +1,29 @@
+::placeholder {
+    color: white;
+}
+
+input {
+    padding:0 1em;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
 .chat {
     max-height: 250px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .lista-amigos {
-    max-height: 500px;
-    overflow-y: scroll;
+    max-height: 410px;
+    overflow-y: auto;
 }
+
+.img-thumbnail {
+    background: rgb(185,34,195);
+background: linear-gradient(0deg, rgba(185,34,195,1) 0%, rgba(45,253,198,1) 100%);
+}
+
 
 .img-user {
     border-radius: 40px;
@@ -43,11 +60,30 @@
     align-items: center;
 }
 
-.message-friend {
-    padding-right: 4em;
+.card-header {
+    background-color: #9A239E;
+    color: white;
 }
 
-.message-me {
-    padding-left: 4em;
+.icono {
+    color: #95EB3A;
 }
+
+.card {
+    color: black;
+    background-color: orange;
+}
+
+.list-group-item {
+    background-color:#fed8b1 ;
+    color: black;
+    box-shadow: 2px 2px 3px black;
+    border-radius: 5px;
+    margin: 0.5em ;
+}
+
+li {
+    text-decoration: none;
+}
+
 
