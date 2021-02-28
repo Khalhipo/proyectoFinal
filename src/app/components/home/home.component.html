@@ -1,0 +1,6 @@
+<ngb-datepicker #dp [(ngModel)]="calendario" (navigate)="date = $event.next"></ngb-datepicker>
+
+<hr/>
+
+<p>{{calendario|json}}</p>
+<p>{{calendario.day}}</p>

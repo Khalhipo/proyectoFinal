@@ -13,6 +13,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EnviarTokenInterceptor } from './auth/enviar-token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialComponent } from './components/social/social.component';
+import { HomeComponent } from './components/home/home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { SocialComponent } from './components/social/social.component';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    SocialComponent
+    SocialComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { SocialComponent } from './components/social/social.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     {provide:LOCALE_ID, useValue:"es"}, 

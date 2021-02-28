@@ -6,7 +6,7 @@
             <form [formGroup]="formLogin" (submit)="submit()">
                 <input class="form-control" type="text" formControlName="email" placeholder="Email"><br>
                 <input class="form-control" type="password" formControlName="password" placeholder="Password"><br>
-                <button class="btn btn-primary btn-block" [disabled]="formLogin.invalid" type="submit">Login</button>
+                <button class="btn btn-info btn-block" [disabled]="formLogin.invalid" type="submit">Login</button>
             </form>
         </div>
     </div>

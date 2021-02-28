@@ -16,7 +16,7 @@
                     <div><span class="data-email"><i class="fas fa-envelope-square"></i> {{user.email}}</span></div>
                     </div>
                 <div class="btns-friend">
-                    <button class="btn btn-primary" (click)="addFriend(user)"><i class="fas fa-user-plus"></i></button>
+                    <button class="btn btn-info" (click)="addFriend(user)"><i class="fas fa-user-plus"></i></button>
                 </div>
                 </div>
         </li>
@@ -40,11 +40,11 @@
             </div>
         <div class="btns-friend">
             <button class="btn btn-danger" (click)="borrarAmigo(user.id)"><i class="fas fa-user-minus"></i></button> 
-            <button class="btn-chat btn btn-info" (click)='userSelected = user;listarMensajes(user.id)'><i class="fas fa-comments"></i></button>
+            <button class="btn-chat btn btn-success" (click)='userSelected = user;listarMensajes(user.id)'><i class="fas fa-comments"></i></button>
         </div>
         </div>
         </li>
-            <div *ngIf="friendsUser.length==0" class="alert alert-primary" role="alert">
+            <div *ngIf="friendsUser.length==0" class="alert alert-info" role="alert">
                 Aún no has añadido ningún amigo
               </div>
     </ul>
@@ -61,7 +61,7 @@
               <img  class="img-user-chat img-thumbnail" src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}">
               <strong>{{userSelected.nombre}}</strong>
             </div>
-          <button (click)="userSelected = null" class="btn"><i class="fas fa-times"></i></button>
+          <button (click)="userSelected = null" class="btn btn-primary"><i class="fas fa-times"></i></button>
         </div>
     </div>
     <div class="chat card-body">
@@ -79,7 +79,7 @@
     </div>
     <div class="card-body">
             <input class="form-control" type="text" [(ngModel)]="mensajeEnviado.mensaje" placeholder="Escribe tu mensaje aquí...">
-            <button [disabled]="!mensajeEnviado.mensaje" class="btn btn-primary btn-block" (click)="escribirMensaje()">Enviar</button>
+            <button [disabled]="!mensajeEnviado.mensaje" class="btn btn-info btn-block" (click)="escribirMensaje()">Enviar</button>
             <button [disabled]="mensajesChat.length==0" class="btn btn-danger btn-block" (click)="borrarChat(userSelected.id)">Borrar conversación</button>
     </div>
 </div>

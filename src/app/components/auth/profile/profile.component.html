@@ -33,38 +33,37 @@
     <div class="card-body" *ngIf="mostrarEditar">
 
         <form [formGroup]="formPerfil" (submit)="editarPerfil()">
-            <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre"><br>
-            <input type="password" class="form-control" formControlName="password" placeholder="Password"><br>
-            <input type="text" class="form-control" formControlName="email" placeholder="Email"><br>
+            <input type="text" class=" form-control" formControlName="nombre" placeholder="Nombre"><br>
+            <input type="password" class=" form-control" formControlName="password" placeholder="Password"><br>
+            <input type="text" class=" form-control" formControlName="email" placeholder="Email"><br>
             <!--<input type="text" class="form-control" formControlName="sexo" placeholder="Sexo"><br>-->
             <div class="form-group">
-            <label for="sexo">Indica tu sexo</label>
-            <select id="sexo" class="form-control" formControlName="sexo" (change)="changeSexo($event)">
+            <select id="sexo" class="form-control pl-3" formControlName="sexo" (change)="changeSexo($event)">
                 <option value="hombre">Hombre</option>
                 <option value="mujer">Mujer</option>
             </select>
-         </div>
-            <input type="number" class="form-control" formControlName="peso" placeholder="Peso"><br>
-            <input type="number" class="form-control" formControlName="altura" placeholder="Altura"><br>
+            </div>
+            <input type="number" class=" form-control" formControlName="peso" placeholder="Peso"><br>
+            <input type="number" class=" form-control" formControlName="altura" placeholder="Altura"><br>
             <button class="btn btn-info btn-block" [disabled]="formPerfil.invalid" type="submit">Guardar cambios</button>
         </form>
 
-        <button class="btn btn-primary btn-block" (click)="mostrarEditar=!mostrarEditar">Cancelar</button>
+        <button class="btn btn-secondary btn-block" (click)="mostrarEditar=!mostrarEditar">Cancelar</button>
     </div>
 </div>
 <div class="card" *ngIf="mostrarEliminar">
     <div class="card-header h5 text-center">Para eliminar tu perfil introduce tu email</div>
     <div class="card-body">
         <input class="form-control" type="text" [(ngModel)]="inputBorrar" placeholder="Email...">
-        <button class="btn btn-block" (click)="mostrarEliminar=!mostrarEliminar; inputBorrar=''">Cancelar</button>
+        <button class="btn btn-secondary btn-block" (click)="mostrarEliminar=!mostrarEliminar; inputBorrar=''">Cancelar</button>
         <button class="btn btn-danger btn-block" (click)="eliminarUsuario()" [disabled]="inputBorrar!=perfil.email">Eliminar</button>
     </div>
 </div>
-<div class="card">
+<div class="card mt-3">
     <div class="card-header h5 text-center">Imagen</div>
     <div class="card-body">
         <input class="form-control" type="file" (change)='tengoFoto($event)'>
-<button class="btn btn-primary btn-block" type='button' (click)='subirFoto()'>Subir imagen</button>
+<button class="btn btn-info btn-block" type='button' (click)='subirFoto()'>Subir imagen</button>
     </div>
 </div>
 </div>
