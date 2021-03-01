@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private calendar: NgbCalendar) { }
 
-  workoutSelected = true;
+  workoutSelected = false;
 
   ngOnInit(): void {
   }
