@@ -15,6 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialComponent } from './components/social/social.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { WorkoutDetailComponent } from './components/workout-detail/workout-detail.component';
+import { WorkoutCreateComponent } from './components/workout-create/workout-create.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProfileComponent,
     RegisterComponent,
     SocialComponent,
-    HomeComponent
+    HomeComponent,
+    WorkoutDetailComponent,
+    WorkoutCreateComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
