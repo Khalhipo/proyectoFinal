@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   workoutSelected = false;
 
   ngOnInit(): void {
+    this.calendario = this.calendar.getToday();
   }
 
 }

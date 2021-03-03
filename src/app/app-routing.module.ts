@@ -10,14 +10,14 @@ import { HomeComponent } from './components/home/home.component';
 import { StatsComponent } from './components/stats/stats.component';
 
 const routes: Routes = [
-  {path:"home",component:HomeComponent},
+  {path:"home",component:HomeComponent, canActivate:[UserRouterGuard]},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
-  {path:"social",component:SocialComponent},
-  {path:"stats",component:StatsComponent},
+  {path:"social",component:SocialComponent, canActivate:[UserRouterGuard]},
+  {path:"stats",component:StatsComponent, canActivate:[UserRouterGuard]},
   {path:"profile",component:ProfileComponent, canActivate:[UserRouterGuard]},
-  {path:"**",component:HomeComponent},
-  {path:"",component:HomeComponent}
+  {path:"**",component:HomeComponent, canActivate:[UserRouterGuard]},
+  {path:"",component:HomeComponent, canActivate:[UserRouterGuard]}
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-workout-detail',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workout-detail.component.css']
 })
 export class WorkoutDetailComponent implements OnInit {
+
+  @Input() fecha: string;
 
   constructor() { }
 

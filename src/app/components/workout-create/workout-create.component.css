@@ -51,6 +51,12 @@ li {
     justify-content: space-between;
 }
 
+.datos-ad {
+    display: flex;
+    justify-content: space-between;
+
+}
+
 /*
 .final {
     color: white;
