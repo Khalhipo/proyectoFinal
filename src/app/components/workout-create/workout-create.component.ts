@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EjercicioEtto, EjercicioEttoMostrar, EjercicioLista } from 'src/app/interfaces/ejercicio';
+import { EjercicioEtto, EjercicioMostrar, EjercicioLista } from 'src/app/interfaces/ejercicio';
 import { Entrenamiento } from 'src/app/interfaces/entrenamiento';
 import { EntrenamientoService } from 'src/app/services/entrenamiento.service';
 
@@ -17,16 +17,11 @@ export class WorkoutCreateComponent implements OnInit {
 
   listaEjercicios: EjercicioLista[] = [];
   listaEjerciciosMostrar: EjercicioLista[] = [];
-  ejerciciosETTO: EjercicioEttoMostrar[] = [];
+  ejerciciosETTO: EjercicioMostrar[] = [];
 
   categorias: string[] = [];
-  categoria: string;
 
-  ejercicio: string;
-  id_ejercicio: EjercicioLista[] = [];
-  series: number = null;
-  repeticiones: number = null;
-  peso: number = null;
+  ejercicio: EjercicioMostrar = {id_ejercicio: null, nombre: "", categoria: "", series: null, repeticiones: null, peso: null};
 
   comentario: string;
   pesoCorporal: number;
@@ -46,7 +41,7 @@ export class WorkoutCreateComponent implements OnInit {
         this.listaEjercicios = respuesta;
         this.categorias = this.listaEjercicios.map(el=>el.categoria);
         this.categorias = [...new Set(this.categorias)];
-        this.listaEjerciciosMostrar = this.listaEjercicios.filter(el=> el.categoria == this.categorias[0]);
+        //this.listaEjerciciosMostrar = this.listaEjercicios.filter(el=> el.categoria == this.categorias[0]);
 
       },
       error => {
@@ -57,16 +52,23 @@ export class WorkoutCreateComponent implements OnInit {
   }
 
   addEjercicio(): void {
-  if(this.series != null && this.repeticiones != null){
-    this.id_ejercicio = this.listaEjercicios.filter(el=>el.nombre == this.ejercicio);
-    this.ejerciciosETTO.push({id_ejercicio: this.id_ejercicio[0].id,nombre: this.ejercicio, categoria: this.categoria, series: this.series,repeticiones: this.repeticiones, peso: this.peso});
-    this.series = null;
-    this.repeticiones = null;
-    this.peso = null;
+    
+  if(this.ejercicio.series != null && this.ejercicio.repeticiones != null){
+    this.ejerciciosETTO.push({id_ejercicio: this.ejercicio.id_ejercicio,nombre:this.ejercicio.nombre, categoria: this.ejercicio.categoria, 
+      series: this.ejercicio.series,repeticiones: this.ejercicio.repeticiones, peso: this.ejercicio.peso});
+  this.ejercicio.series = null;
+  this.ejercicio.repeticiones = null;
+  this.ejercicio.peso = null;
+  this.ejercicio.nombre = '';
   }
   }
 
-  borrarEjercicio(ej: EjercicioEttoMostrar): void {
+  cambiarEjercicio(e) {
+  this.ejercicio.nombre = this.listaEjerciciosMostrar.filter(el => el.id == e.target.value)[0].nombre; 
+
+  }
+
+  borrarEjercicio(ej: EjercicioMostrar): void {
     this.ejerciciosETTO = this.ejerciciosETTO.filter(el=> el != ej);
   }
 
@@ -81,10 +83,11 @@ export class WorkoutCreateComponent implements OnInit {
       pesoCorporal: this.pesoCorporal?this.pesoCorporal:null,
       ejercicios: this.ejerciciosETTO
     }
+    console.log("etto: " + JSON.stringify(this.entrenamiento));
     this.entrenamientoService.crearEtto(this.entrenamiento).subscribe(
       respuesta => {
-        console.log(respuesta);
-        this.irHacia.navigate(['/home']);
+        console.log("hola amigos:" + respuesta);
+        //this.irHacia.navigate(['/home']);
         
       }
     )

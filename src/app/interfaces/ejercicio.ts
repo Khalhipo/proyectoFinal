@@ -14,9 +14,9 @@ export interface EjercicioEtto {
     peso: number
 }
 
-export interface EjercicioEttoMostrar {
+export interface EjercicioMostrar {
     id_ejercicio: number,
-    nombre: string,
+    nombre?: string,
     categoria: string,
     series: number,
     repeticiones: number,

@@ -5,18 +5,20 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-        Categoría: <select [(ngModel)]="categoria" (change)="filtrarCategoria($event)" class="form-control">
+        Categoría: <select [(ngModel)]="ejercicio.categoria" (change)="filtrarCategoria($event)" class="form-control">
             <option *ngFor="let categoria of categorias" value="{{categoria}}">{{categoria}}</option>
         </select>
-        Ejercicio: <select select [(ngModel)]="ejercicio" class="form-control">
-            <option *ngFor="let ejercicio of listaEjerciciosMostrar" value="{{ejercicio.nombre}}">{{ejercicio.nombre}}</option>
+        Ejercicio: <select select [(ngModel)]="ejercicio.id_ejercicio" (change)="cambiarEjercicio($event)" class="form-control">
+            <option *ngFor="let ejercicioLista of listaEjerciciosMostrar" value="{{ejercicioLista.id}}">{{ejercicioLista.nombre}}
+            </option>
+           
         </select><br>
         <button class="btn btn-info" (click)="addEjercicio()">Añadir ejercicio</button>
     </div>
     <div class="col-md-6">
-        <label>Series: </label><input select [(ngModel)]="series" class="form-control" type="number" placeholder="Series">
-        <label>Reps: </label><input select [(ngModel)]="repeticiones" class="form-control" type="number" placeholder="Reps">
-        <label>Peso: </label><input select [(ngModel)]="peso" class="form-control" type="number" placeholder="Peso (kg)">
+        <label>Series: </label><input select [(ngModel)]="ejercicio.series" class="form-control" type="number" placeholder="Series">
+        <label>Reps: </label><input select [(ngModel)]="ejercicio.repeticiones" class="form-control" type="number" placeholder="Reps">
+        <label>Peso: </label><input select [(ngModel)]="ejercicio.peso" class="form-control" type="number" placeholder="Peso (kg)">
     </div>
     {{mensaje}}
 </div>
